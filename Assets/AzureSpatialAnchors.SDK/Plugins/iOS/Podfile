@@ -2,8 +2,8 @@ platform :ios, '11.0'
 use_frameworks!
 
 target 'Unity-iPhone' do
-    target 'UnityFramework' do
-        # Pods for UnityFramework
-        pod 'AzureSpatialAnchors', '2.2.1'
-    end
+  target 'UnityFramework' do
+    # Pods for Unity-iPhone
+    pod 'AzureSpatialAnchors', '2.5.0'
+  end
 end

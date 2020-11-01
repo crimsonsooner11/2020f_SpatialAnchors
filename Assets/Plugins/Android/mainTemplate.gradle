@@ -1,28 +1,7 @@
-buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
-    }
-}
-
-allprojects {
-    repositories {
-        mavenLocal()
-        google()
-        jcenter()
-        flatDir {
-            dirs 'libs'
-        }
-    }
-}
-
 apply plugin: 'com.android.library'
+**APPLY_PLUGINS**
 
-def azureSpatialAnchorsSdkVersion = '2.1.1'
+def azureSpatialAnchorsSdkVersion = '2.5.0'
 
 /*
 The ARCore aar library contains the native shared libraries.  These are
@@ -47,14 +26,20 @@ android {
     compileSdkVersion **APIVERSION**
     buildToolsVersion '**BUILDTOOLS**'
 
-    defaultConfig {
-consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
-        
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
+    defaultConfig {
         minSdkVersion **MINSDKVERSION**
         targetSdkVersion **TARGETSDKVERSION**
+        ndk {
+            abiFilters **ABIFILTERS**
+        }
         versionCode **VERSIONCODE**
         versionName '**VERSIONNAME**'
+        consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
 
         externalNativeBuild {
             cmake {
@@ -64,10 +49,6 @@ consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
                         "-DNATIVE_INCLUDE=${project.rootDir}/libraries/include"
             }
         }
-
-        ndk {
-            abiFilters **ABIFILTERS**
-        }
     }
 
     lintOptions {
@@ -75,29 +56,10 @@ consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
     }
 
     aaptOptions {
-        noCompress '.unity3d', '.ress', '.resource', '.obb'**STREAMING_ASSETS**
-    }**SIGN**
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    buildTypes {
-        debug {
-            minifyEnabled **MINIFY_DEBUG**
-            useProguard **PROGUARD_DEBUG**
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt'**USER_PROGUARD**
-            jniDebuggable true
-        }
-        release {
-            minifyEnabled **MINIFY_RELEASE**
-            useProguard **PROGUARD_RELEASE**
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt'**USER_PROGUARD****SIGNCONFIG**
-        }
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
     }**PACKAGING_OPTIONS**
-**BUILT_APK_LOCATION**
-}**SOURCE_BUILD_SETUP**
+}**REPOSITORIES****SOURCE_BUILD_SETUP**
+**EXTERNAL_SOURCES**
 
 // Extracts the shared libraries from aars in the natives configuration.
 // This is done so that NDK builds can access these libraries.
