@@ -17,6 +17,7 @@
     }
   ],
   "dependencies": {
+    "com.microsoft.azure.spatial-anchors-sdk.windows": "2.5.0",
     "com.microsoft.mixedreality.toolkit.examples": "2.5.1",
     "com.microsoft.mixedreality.toolkit.extensions": "2.5.1",
     "com.microsoft.mixedreality.toolkit.foundation": "2.5.1",
