@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SpatialAnchor.unity
+    guid: 66b57cd013d9cd04092c0acbcf891d0a
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 7b4f6d2ee49f07f49badd78bda81c415, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b398b6a67d9b31d48a0fdf45280d7654, type: 2}
